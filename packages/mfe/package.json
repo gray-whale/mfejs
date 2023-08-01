@@ -1,0 +1,28 @@
+{
+  "name": "@mfejs/mfe",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "",
+  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "",
+    "directory": "packages/mfe"
+  },
+  "license": "MIT",
+  "scripts": {
+    "prepublishOnly": "only-allow-pnpm",
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "author": "",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}
