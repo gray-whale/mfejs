@@ -9,7 +9,11 @@
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "@mfejs/utils": "^1.0.0"
+  },
   "devDependencies": {
+    "@types/node": "^20.4.5",
     "typescript": "^5.1.6"
   }
 }

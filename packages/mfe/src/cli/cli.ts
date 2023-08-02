@@ -1,6 +1,7 @@
 import { logger, setNoDeprecation, yParser } from "@mfejs/utils";
 import {checkVersion as checkNodeVersion, setNodeTitle, } from "./node";
-import { DEV_COMMAND } from "../constants";
+import { DEV_COMMAND, FRAMEWORK_NAME } from "../constants";
+import { dev } from "./dev";
 
 interface IOpts {
     presets?: string[];
@@ -20,7 +21,7 @@ export async function run(opts?: IOpts) {
         },
         boolean: ['version'],
     });
-    const command = args._[0];
+    const command = String(args._[0]);
     const FEATURE_COMMANDS = ['mfsu', 'setup', 'deadcode'];
     if ([DEV_COMMAND, ...FEATURE_COMMANDS].includes(command)) {
         process.env.NODE_ENV = 'development';
@@ -41,7 +42,6 @@ export async function run(opts?: IOpts) {
             });
         } catch (e: any) {
             logger.error(e);
-            printHelp.exit();
             process.exit(1);
         }
     }

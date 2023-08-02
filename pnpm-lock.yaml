@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -9,7 +13,14 @@ importers:
         version: 2.26.2
 
   packages/core:
+    dependencies:
+      '@mfejs/utils':
+        specifier: ^1.0.0
+        version: link:../utils
     devDependencies:
+      '@types/node':
+        specifier: ^20.4.5
+        version: 20.4.5
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
@@ -2178,7 +2189,3 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
