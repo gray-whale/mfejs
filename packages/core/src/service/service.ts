@@ -2,7 +2,7 @@ import type { BuildResult } from '@umijs/bundler-utils/compiled/esbuild';
 import {
   AsyncSeriesWaterfallHook,
   SyncWaterfallHook,
-} from '@umijs/bundler-utils/compiled/tapable';
+} from 'tapable';
 import { chalk, fastestLevenshtein, lodash, yParser } from '@mfejs/utils';
 import assert from 'assert';
 import { existsSync } from 'fs';
@@ -99,8 +99,8 @@ export class Service {
   telemetry = new Telemetry();
 
   constructor(opts: IOpts) {
-    this.cwd = opts.cwd;
-    this.env = opts.env;
+    this.cwd = opts.cwd; // 当前工作目录
+    this.env = opts.env; // 环境变量
     this.opts = opts;
     assert(existsSync(this.cwd), `Invalid cwd ${this.cwd}, it's not found.`);
   }
@@ -254,6 +254,7 @@ export class Service {
 
     // loadEnv
     this.stage = ServiceStage.init;
+    // 通过dotenv将环境变量中的变量从 .env 或 .env.local 文件加载到 process.env 中
     loadEnv({ cwd: this.cwd, envFile: '.env' });
     // get pkg from package.json
     let pkg: Record<string, string | Record<string, any>> = {};

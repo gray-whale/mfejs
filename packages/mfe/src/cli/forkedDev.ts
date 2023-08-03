@@ -14,6 +14,7 @@ setNoDeprecation();
       args,
     });
 
+    //父子进程通信
     let closed = false;
     // kill(2) Ctrl-C
     process.once('SIGINT', () => onSignal('SIGINT'));

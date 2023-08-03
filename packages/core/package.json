@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@mfejs/utils": "^1.0.0"
+    "@mfejs/utils": "^1.0.0",
+    "tapable": "^2.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.4.5",

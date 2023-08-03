@@ -1,4 +1,4 @@
-import { winPath } from '@umijs/utils';
+import { winPath } from '@mfejs/utils';
 import { existsSync, statSync } from 'fs';
 import { join } from 'path';
 import { Env } from '../types';
@@ -7,6 +7,11 @@ function winJoin(...args: string[]) {
   return winPath(join(...args));
 }
 
+/**
+ * 获取相关绝对路径，获取项目目录结构中 node_modules、dist、src、pages 等文件夹的绝对路径。
+ * @param opts 
+ * @returns 
+ */
 export function getPaths(opts: { cwd: string; prefix: string; env: Env }) {
   const cwd = opts.cwd;
   const src = winJoin(cwd, 'src');

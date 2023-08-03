@@ -1,4 +1,4 @@
-import { yParser } from '@umijs/utils';
+import { yParser } from '@mfejs/utils';
 import { Plugin } from './plugin';
 import { ResolveConfigMode } from './pluginAPI';
 
