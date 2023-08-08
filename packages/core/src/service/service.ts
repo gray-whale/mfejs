@@ -1,4 +1,4 @@
-import type { BuildResult } from '@umijs/bundler-utils/compiled/esbuild';
+import type { BuildResult } from 'esbuild';
 import {
   AsyncSeriesWaterfallHook,
   SyncWaterfallHook,

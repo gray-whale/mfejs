@@ -1,4 +1,4 @@
-import esbuild from '@umijs/bundler-utils/compiled/esbuild';
+import esbuild from 'esbuild';
 import { lodash, pkgUp, register, resolve, winPath } from '@mfejs/utils';
 import assert from 'assert';
 import { existsSync } from 'fs';
@@ -76,9 +76,7 @@ export class Plugin {
         ret = require(this.path);
       } catch (e: any) {
         throw new Error(
-          `Register ${this.type} ${this.path} failed, since ${e.message}`,
-          { cause: e },
-        );
+          `Register ${this.type} ${this.path} failed, since ${e.message}`);
       } finally {
         register.restore();
       }
@@ -175,9 +173,7 @@ export class Plugin {
             extensions: ['.tsx', '.ts', '.mjs', '.jsx', '.js'],
           });
         } catch (_e) {
-          throw new Error(`Invalid plugin ${path}, can not be resolved.`, {
-            cause: _e,
-          });
+          throw new Error(`Invalid plugin ${path}, can not be resolved.`);
         }
 
         return new Plugin({

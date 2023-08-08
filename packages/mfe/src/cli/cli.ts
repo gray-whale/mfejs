@@ -2,6 +2,7 @@ import { logger, setNoDeprecation, yParser } from "@mfejs/utils";
 import {checkVersion as checkNodeVersion, setNodeTitle, } from "./node";
 import { DEV_COMMAND, FRAMEWORK_NAME } from "../constants";
 import { dev } from "./dev";
+import { Service } from "../service/service";
 
 interface IOpts {
     presets?: string[];

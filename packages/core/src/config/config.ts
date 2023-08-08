@@ -1,4 +1,4 @@
-import esbuild from '@umijs/bundler-utils/compiled/esbuild';
+import esbuild from 'esbuild';
 import {
   chokidar,
   isZodSchema,
@@ -6,12 +6,12 @@ import {
   register,
   semver,
   zod,
-} from '@umijs/utils';
-import joi from '@umijs/utils/compiled/@hapi/joi';
+} from '@mfejs/utils';
+import joi from '@hapi/joi';
 import assert from 'assert';
 import { existsSync } from 'fs';
 import { join } from 'path';
-import { diff } from '../../compiled/just-diff';
+import { diff } from 'just-diff';
 import {
   DEFAULT_CONFIG_FILES,
   LOCAL_EXT,
@@ -181,9 +181,7 @@ export class Config {
             throw e;
           }
 
-          throw new Error(`Parse config file failed: [${configFile}]`, {
-            cause: e,
-          });
+          throw new Error(`Parse config file failed: [${configFile}]`);
         }
         for (const file of register.getFiles()) {
           delete require.cache[file];

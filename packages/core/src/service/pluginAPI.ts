@@ -1,4 +1,4 @@
-import { chalk, lodash, logger } from '@umijs/utils';
+import { chalk, lodash, logger } from '@mfejs/utils';
 import assert from 'assert';
 import {
   EnableBy,
@@ -45,8 +45,6 @@ export class PluginAPI {
       'ready',
       'info',
       'event',
-      'debug',
-      'fatal',
       'profile',
     ];
     // @ts-ignore
