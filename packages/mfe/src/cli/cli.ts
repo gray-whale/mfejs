@@ -38,7 +38,7 @@ export async function run(opts?: IOpts) {
     } else {
         try {
             await new Service().run2({
-                name: args._[0],
+                name: args._[0].toString(),
                 args,
             });
         } catch (e: any) {

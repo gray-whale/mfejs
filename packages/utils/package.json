@@ -2,7 +2,7 @@
   "name": "@mfejs/utils",
   "version": "1.0.0",
   "description": "",
-  "types": "./src/index.ts",
+  "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "repository": {
