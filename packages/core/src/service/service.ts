@@ -38,6 +38,9 @@ interface IOpts {
   defaultConfigFiles?: string[];
 }
 
+/**
+ * Service 就是所谓插件的核心，即微内核
+ */
 export class Service {
   private opts: IOpts;
   appData: {
@@ -61,6 +64,7 @@ export class Service {
     [key: string]: any;
   } = {};
   args: yParser.Arguments = { _: [], $0: '' };
+  //存放着所有的命令以及对应实现,key 是命令名字，value 是命令对象
   commands: Record<string, Command> = {};
   generators: Record<string, Generator> = {};
   config: Record<string, any> = {};
@@ -80,6 +84,7 @@ export class Service {
     absNodeModulesPath?: string;
     absOutputPath?: string;
   } = {};
+  // 插件
   // preset is plugin with different type
   plugins: Record<string, Plugin> = {};
   keyToPluginMap: Record<string, Plugin> = {};
@@ -268,7 +273,7 @@ export class Service {
         try {
           pkg = require(join(process.cwd(), 'package.json'));
           pkgPath = join(process.cwd(), 'package.json');
-        } catch (_e) {}
+        } catch (_e) { }
       }
     }
     this.pkg = pkg;
@@ -330,6 +335,7 @@ export class Service {
     while (plugins.length) {
       await this.initPlugin({ plugin: plugins.shift()!, plugins });
     }
+    //获取命令对象
     const command = this.commands[name];
     if (!command) {
       this.commandGuessHelper(Object.keys(this.commands), name);
@@ -407,6 +413,7 @@ export class Service {
     });
     // run command
     this.stage = ServiceStage.runCommand;
+    //执行 command 的函数
     let ret = await command.fn({ args });
     this._profilePlugins();
     return ret;
@@ -438,8 +445,8 @@ export class Service {
       initialValue: lodash.cloneDeep(
         resolveMode === 'strict'
           ? this.configManager!.getConfig({
-              schemas: this.configSchemas,
-            }).config
+            schemas: this.configSchemas,
+          }).config
           : this.configManager!.getUserConfig().config,
       ),
       args: { paths: this.paths },
@@ -524,6 +531,11 @@ export class Service {
     opts.plugins.push(...(plugins || []));
   }
 
+  /**
+   * 初始化插件
+   * @param opts 
+   * @returns 
+   */
   async initPlugin(opts: {
     plugin: Plugin;
     presets?: Plugin[];
@@ -532,8 +544,7 @@ export class Service {
     // register to this.plugins
     assert(
       !this.plugins[opts.plugin.id],
-      `${opts.plugin.type} ${opts.plugin.id} is already registered by ${
-        this.plugins[opts.plugin.id]?.path
+      `${opts.plugin.type} ${opts.plugin.id} is already registered by ${this.plugins[opts.plugin.id]?.path
       }, ${opts.plugin.type} from ${opts.plugin.path} register failed.`,
     );
     this.plugins[opts.plugin.id] = opts.plugin;
@@ -585,8 +596,7 @@ export class Service {
     // key should be unique
     assert(
       !this.keyToPluginMap[opts.plugin.key],
-      `key ${opts.plugin.key} is already registered by ${
-        this.keyToPluginMap[opts.plugin.key]?.path
+      `key ${opts.plugin.key} is already registered by ${this.keyToPluginMap[opts.plugin.key]?.path
       }, ${opts.plugin.type} from ${opts.plugin.path} register failed.`,
     );
     this.keyToPluginMap[opts.plugin.key] = opts.plugin;
@@ -651,7 +661,7 @@ export class Service {
     const altCmds = commands.filter((cmd) => {
       return (
         fastestLevenshtein.distance(currentCmd, cmd) <
-          currentCmd.length * 0.6 && currentCmd !== cmd
+        currentCmd.length * 0.6 && currentCmd !== cmd
       );
     });
     const printHelper = altCmds
@@ -720,58 +730,58 @@ export interface IServicePluginAPI {
 type DeclareKind = 'value' | 'type';
 type Declaration =
   | {
-      type: 'ImportDeclaration';
-      source: string;
-      specifiers: Array<SimpleImportSpecifier>;
-      importKind: DeclareKind;
-      start: number;
-      end: number;
-    }
+    type: 'ImportDeclaration';
+    source: string;
+    specifiers: Array<SimpleImportSpecifier>;
+    importKind: DeclareKind;
+    start: number;
+    end: number;
+  }
   | {
-      type: 'DynamicImport';
-      source: string;
-      start: number;
-      end: number;
-    }
+    type: 'DynamicImport';
+    source: string;
+    start: number;
+    end: number;
+  }
   | {
-      type: 'ExportNamedDeclaration';
-      source: string;
-      specifiers: Array<SimpleExportSpecifier>;
-      exportKind: DeclareKind;
-      start: number;
-      end: number;
-    }
+    type: 'ExportNamedDeclaration';
+    source: string;
+    specifiers: Array<SimpleExportSpecifier>;
+    exportKind: DeclareKind;
+    start: number;
+    end: number;
+  }
   | {
-      type: 'ExportAllDeclaration';
-      source: string;
-      start: number;
-      end: number;
-    };
+    type: 'ExportAllDeclaration';
+    source: string;
+    start: number;
+    end: number;
+  };
 type SimpleImportSpecifier =
   | {
-      type: 'ImportDefaultSpecifier';
-      local: string;
-    }
+    type: 'ImportDefaultSpecifier';
+    local: string;
+  }
   | {
-      type: 'ImportNamespaceSpecifier';
-      local: string;
-      imported: string;
-    }
+    type: 'ImportNamespaceSpecifier';
+    local: string;
+    imported: string;
+  }
   | {
-      type: 'ImportNamespaceSpecifier';
-      local?: string;
-    };
+    type: 'ImportNamespaceSpecifier';
+    local?: string;
+  };
 type SimpleExportSpecifier =
   | {
-      type: 'ExportDefaultSpecifier';
-      exported: string;
-    }
+    type: 'ExportDefaultSpecifier';
+    exported: string;
+  }
   | {
-      type: 'ExportNamespaceSpecifier';
-      exported?: string;
-    }
+    type: 'ExportNamespaceSpecifier';
+    exported?: string;
+  }
   | {
-      type: 'ExportSpecifier';
-      exported: string;
-      local: string;
-    };
+    type: 'ExportSpecifier';
+    exported: string;
+    local: string;
+  };

@@ -4,6 +4,9 @@ import { dirname, join } from 'path';
 import { DEFAULT_CONFIG_FILES, FRAMEWORK_NAME } from '../constants';
 import { getCwd } from './cwd';
 
+/**
+ * 继承 Service 微内核
+ */
 export class Service extends CoreService {
   constructor(opts?: any) {
     process.env.UMI_DIR = dirname(require.resolve('../../package'));

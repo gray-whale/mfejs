@@ -37,6 +37,7 @@ export async function run(opts?: IOpts) {
         dev();
     } else {
         try {
+            //调用 Service 启动服务，调用 run2 方法启动命令
             await new Service().run2({
                 name: args._[0].toString(),
                 args,

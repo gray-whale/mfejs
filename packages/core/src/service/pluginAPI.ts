@@ -71,8 +71,8 @@ export class PluginAPI {
     key?: string;
     config?: IPluginConfig;
     enableBy?:
-      | EnableBy
-      | ((enableByOpts: { userConfig: any; env: Env }) => boolean);
+    | EnableBy
+    | ((enableByOpts: { userConfig: any; env: Env }) => boolean);
   }) {
     // default 值 + 配置开启冲突，会导致就算用户没有配 key，插件也会生效
     if (opts.enableBy === EnableBy.config && opts.config?.default) {
@@ -83,6 +83,10 @@ export class PluginAPI {
     this.plugin.merge(opts);
   }
 
+  /**
+   * 注册命令
+   * @param opts 
+   */
   registerCommand(
     opts: Omit<ICommandOpts, 'plugin'> & { alias?: string | string[] },
   ) {
@@ -93,7 +97,7 @@ export class PluginAPI {
 
       assert(
         !configResolveMode ||
-          resolveConfigModes.indexOf(configResolveMode) >= 0,
+        resolveConfigModes.indexOf(configResolveMode) >= 0,
         `configResolveMode must be one of ${resolveConfigModes.join(
           ',',
         )}, but got ${configResolveMode}`,
@@ -102,6 +106,7 @@ export class PluginAPI {
         !this.service.commands[name],
         `api.registerCommand() failed, the command ${name} is exists from ${this.service.commands[name]?.plugin.id}.`,
       );
+      //注册 Command 到Service 中去
       this.service.commands[name] = new Command({
         ...commandOpts,
         plugin: this.plugin,
@@ -181,7 +186,7 @@ export class PluginAPI {
   registerPlugins(source: Plugin[], plugins: any[]) {
     assert(
       this.service.stage === ServiceStage.initPresets ||
-        this.service.stage === ServiceStage.initPlugins,
+      this.service.stage === ServiceStage.initPlugins,
       `api.registerPlugins() failed, it should only be used in registering stage.`,
     );
     const mappedPlugins = plugins.map((plugin) => {
@@ -192,7 +197,7 @@ export class PluginAPI {
         );
         plugin.type = PluginType.plugin;
         plugin.enableBy = plugin.enableBy || EnableBy.register;
-        plugin.apply = plugin.apply || (() => () => {});
+        plugin.apply = plugin.apply || (() => () => { });
         plugin.config = plugin.config || {};
         plugin.time = { hooks: {} };
         return plugin;
