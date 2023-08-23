@@ -4,7 +4,7 @@
   "description": "现代前端框架",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "pnpm --filter @mfejs/* build"
   },
   "repository": {
     "type": "git",
