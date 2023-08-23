@@ -73,6 +73,7 @@ export class Service {
   configOnChanges: Record<string, any> = {};
   cwd: string;
   env: Env;
+  //钩子，是按类型划分的
   hooks: Record<string, Hook[]> = {};
   name: string = '';
   paths: {
@@ -110,6 +111,7 @@ export class Service {
     assert(existsSync(this.cwd), `Invalid cwd ${this.cwd}, it's not found.`);
   }
 
+  //应用插件
   // overload, for apply event synchronously
   applyPlugins<T>(opts: {
     key: string;
@@ -131,6 +133,7 @@ export class Service {
     args?: any;
     sync?: boolean;
   }): Promise<typeof opts.initialValue | T> | (typeof opts.initialValue | T) {
+    //找到 key 对应的 hooks
     const hooks = this.hooks[opts.key] || [];
     let type = opts.type;
     // guess type from key
@@ -223,6 +226,7 @@ export class Service {
         }
 
         const tEvent = new AsyncSeriesWaterfallHook(['_']);
+        //循环所有的 hook
         for (const hook of hooks) {
           if (!this.isPluginEnable(hook)) continue;
           tEvent.tapPromise(
