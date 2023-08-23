@@ -45,11 +45,37 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
 
+  packages/create-mfe:
+    dependencies:
+      '@mfejs/utils':
+        specifier: ^1.0.0
+        version: link:../utils
+    devDependencies:
+      '@types/node':
+        specifier: ^20.4.5
+        version: 20.4.5
+      typescript:
+        specifier: ^5.1.6
+        version: 5.1.6
+
   packages/mfe:
     dependencies:
       '@mfejs/core':
         specifier: ^1.0.0
         version: link:../core
+      '@mfejs/utils':
+        specifier: ^1.0.0
+        version: link:../utils
+    devDependencies:
+      '@types/node':
+        specifier: ^20.4.5
+        version: 20.4.5
+      typescript:
+        specifier: ^5.1.6
+        version: 5.1.6
+
+  packages/preset-mfe:
+    dependencies:
       '@mfejs/utils':
         specifier: ^1.0.0
         version: link:../utils
