@@ -2,6 +2,7 @@ import { logger, yParser, setNoDeprecation } from '@mfejs/utils';
 import { DEV_COMMAND, FRAMEWORK_NAME } from '../constants';
 import { Service } from '../service/service';
 import { setNodeTitle } from './node';
+
 setNodeTitle(`${FRAMEWORK_NAME}-dev`);
 setNoDeprecation();
 

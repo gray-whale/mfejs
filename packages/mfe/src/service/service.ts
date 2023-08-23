@@ -6,13 +6,14 @@ import { getCwd } from './cwd';
 
 export class Service extends CoreService {
   constructor(opts?: any) {
-    process.env.UMI_DIR = dirname(require.resolve('../../package'));
+    //当前工程的文件夹
+    process.env.MFE_DIR = dirname(require.resolve('../../package'));
     const cwd = getCwd();
-    // Why?
+    // Why?  后面再研究一下
     // plugin import from umi but don't explicitly depend on it
     // and we may also have old umi installed
     // ref: https://github.com/umijs/umi/issues/8342#issuecomment-1182654076
-    require('./requireHook');
+    //require('./requireHook');
     super({
       ...opts,
       env: process.env.NODE_ENV,
