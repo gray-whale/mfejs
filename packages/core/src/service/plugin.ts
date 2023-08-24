@@ -6,10 +6,11 @@ import { basename, dirname, extname, join, relative } from 'path';
 import { EnableBy, Env, IPluginConfig } from '../types';
 
 const RE = {
-  plugin: /^(@umijs\/|umi-)plugin-/,
-  preset: /^(@umijs\/|umi-)preset-/,
+  plugin: /^(@mfejs\/|mfe-)plugin-/,
+  preset: /^(@mfejs\/|mfe-)preset-/,
 };
 
+//插件类型分为预置和插件
 type PluginType = 'plugin' | 'preset';
 
 interface IOpts {
@@ -26,6 +27,9 @@ export interface IPluginObject {
   enableBy?: EnableBy | (() => boolean);
 }
 
+/**
+ * 插件类
+ */
 export class Plugin {
   private cwd: string;
   type: PluginType;
@@ -56,7 +60,7 @@ export class Plugin {
     let pkg = null;
     // path is the package entry
     let isPkgEntry = false;
-    const pkgJSONPath = pkgUp.pkgUpSync({ cwd: this.path })!;
+    const pkgJSONPath = pkgUp.sync({ cwd: this.path })!;
     if (pkgJSONPath) {
       pkg = require(pkgJSONPath);
       isPkgEntry =

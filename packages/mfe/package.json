@@ -20,10 +20,11 @@
     "build": "tsc",
     "dev": "tsc -w"
   },
-  "author": "",
+  "author": "codeteenager",
   "dependencies": {
     "@mfejs/utils": "^1.0.0",
-    "@mfejs/core": "^1.0.0"
+    "@mfejs/core": "^1.0.0",
+    "@mfejs/preset-mfe": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.4.5",

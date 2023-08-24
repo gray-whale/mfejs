@@ -4,6 +4,7 @@ import {
   SyncWaterfallHook,
 } from 'tapable';
 import { chalk, fastestLevenshtein, lodash, yParser } from '@mfejs/utils';
+//提供一个API，它在功能上尽可能与Node.js断言API相同
 import assert from 'assert';
 import { existsSync } from 'fs';
 import { isAbsolute, join } from 'path';
@@ -526,6 +527,8 @@ export class Service {
     presets: Plugin[];
     plugins: Plugin[];
   }) {
+    console.log('---------------initPreset---------------');
+    console.log(JSON.stringify(opts));
     const { presets, plugins } = await this.initPlugin({
       plugin: opts.preset,
       presets: opts.presets,

@@ -9,6 +9,7 @@ interface IOpts {
 }
 
 export async function run(opts?: IOpts) {
+    console.log('检查')
     //检查node版本
     checkNodeVersion();
     //设置当前进程名
@@ -42,7 +43,7 @@ export async function run(opts?: IOpts) {
         try {
             //调用 Service 启动服务，调用 run2 方法启动命令
             await new Service().run2({
-                name: args._[0].toString(),
+                name: args._[0] as string,
                 args,
             });
         } catch (e: any) {

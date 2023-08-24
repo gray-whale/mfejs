@@ -31,7 +31,7 @@ function installDeps({
     devStr?: string,
   ) => {
     console.log(`${npmStr} install dependencies packages:${deps.join(' ')}`);
-    execa.execaCommandSync(
+    execa.commandSync(
       [npmStr, insStr, devStr]
         .concat(deps)
         .filter((n) => n)

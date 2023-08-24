@@ -17,14 +17,15 @@ export class Service extends CoreService {
     // and we may also have old umi installed
     // ref: https://github.com/umijs/umi/issues/8342#issuecomment-1182654076
     //require('./requireHook');
+    console.log('------------走你----------------');
     super({
       ...opts,
-      env: process.env.NODE_ENV,
-      cwd,
-      defaultConfigFiles: opts?.defaultConfigFiles || DEFAULT_CONFIG_FILES,
-      frameworkName: opts?.frameworkName || FRAMEWORK_NAME,
-      presets: [require.resolve('@umijs/preset-umi'), ...(opts?.presets || [])],
-      plugins: [
+      env: process.env.NODE_ENV,  //env
+      cwd, //当前工程路径
+      defaultConfigFiles: opts?.defaultConfigFiles || DEFAULT_CONFIG_FILES, //默认配置文件
+      frameworkName: opts?.frameworkName || FRAMEWORK_NAME,  //框架名mfe
+      presets: [require.resolve('@mfejs/preset-mfe'), ...(opts?.presets || [])],  //作用是预设一些插件，它通常用来注册一批 presets 和 plugins
+      plugins: [  //插件
         existsSync(join(cwd, 'plugin.ts')) && join(cwd, 'plugin.ts'),
         existsSync(join(cwd, 'plugin.js')) && join(cwd, 'plugin.js'),
       ].filter(Boolean),
@@ -32,6 +33,7 @@ export class Service extends CoreService {
   }
 
   async run2(opts: { name: string; args?: any }) {
+    console.log('----------------run2----------------');
     let name = opts.name;
     if (opts?.args.version || name === 'v') {
       name = 'version';

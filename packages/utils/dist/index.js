@@ -30,8 +30,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.zod = exports.fastestLevenshtein = exports.installDeps = exports.updatePackageJSON = exports.prompts = exports.generateFile = exports.logger = exports.resolve = exports.portfinder = exports.pkgUp = exports.rimraf = exports.Mustache = exports.mkdirp = exports.createDebug = exports.glob = exports.deepmerge = exports.semver = exports.chokidar = exports.lodash = exports.yParser = exports.chalk = exports.register = void 0;
-const chalk_1 = __importDefault(require("chalk"));
-exports.chalk = chalk_1.default;
+const chalk = __importStar(require("chalk"));
+exports.chalk = chalk;
 const yargs_parser_1 = __importDefault(require("yargs-parser"));
 exports.yParser = yargs_parser_1.default;
 const lodash_1 = __importDefault(require("lodash"));

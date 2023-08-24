@@ -9,14 +9,17 @@ import { Generator, GeneratorType } from './generator';
 import { PluginAPI } from './pluginAPI';
 import { IServicePluginAPI } from './service';
 
+/**
+ * 生成插件模板的插件
+ */
 export default (api: PluginAPI & IServicePluginAPI) => {
   api.registerCommand({
     name: 'generate',
     alias: 'g',
     details: `
-umi generate
+mfe generate
 `,
-    description: 'generate code snippets quickly',
+    description: '快速生成代码片段',
     configResolveMode: 'loose',
     async fn({ args }) {
       const [type] = args._;
