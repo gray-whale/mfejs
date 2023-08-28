@@ -328,6 +328,8 @@ export class Service {
     // register presets and plugins
     this.stage = ServiceStage.initPresets;
     const presetPlugins: Plugin[] = [];
+    console.log('---------------presets---------------');
+    console.log(JSON.stringify(presets));
     while (presets.length) {
       await this.initPreset({
         preset: presets.shift()!,
