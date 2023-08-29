@@ -17,7 +17,7 @@ export class Service extends CoreService {
     // and we may also have old umi installed
     // ref: https://github.com/umijs/umi/issues/8342#issuecomment-1182654076
     //require('./requireHook');
-    console.log('------------走你----------------');
+
     super({
       ...opts,
       env: process.env.NODE_ENV,  //env

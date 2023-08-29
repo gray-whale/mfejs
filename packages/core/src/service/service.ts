@@ -346,6 +346,7 @@ export class Service {
     const command = this.commands[name];
     if (!command) {
       this.commandGuessHelper(Object.keys(this.commands), name);
+      //命令不存在则报异常
       throw Error(`Invalid command ${chalk.red(name)}, it's not registered.`);
     }
     // collect configSchemas and configDefaults

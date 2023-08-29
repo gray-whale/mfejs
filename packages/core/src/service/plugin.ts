@@ -34,7 +34,9 @@ export class Plugin {
   private cwd: string;
   type: PluginType;
   path: string;
+  // 插件的id，区别不同的插件
   id: string;
+  // 插件内的不同内容，如方法及数据等
   key: string;
   apply: Function;
   config: IPluginConfig = {};

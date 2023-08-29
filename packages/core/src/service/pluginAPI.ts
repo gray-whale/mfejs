@@ -133,6 +133,10 @@ export class PluginAPI {
     });
   }
 
+  /**
+   *  注册插件
+   * @param opts 
+   */
   register(opts: Omit<IHookOpts, 'plugin'>) {
     assert(
       this.service.stage <= ServiceStage.initPlugins,
@@ -144,6 +148,10 @@ export class PluginAPI {
     );
   }
 
+  /**
+   * 注册方法
+   * @param opts 
+   */
   registerMethod(opts: { name: string; fn?: Function }) {
     assert(
       !this.service.pluginMethods[opts.name],
@@ -165,6 +173,9 @@ export class PluginAPI {
     };
   }
 
+  /**
+   *  注册预设
+   * */
   registerPresets(source: Plugin[], presets: any[]) {
     assert(
       this.service.stage === ServiceStage.initPresets,
@@ -183,6 +194,11 @@ export class PluginAPI {
     );
   }
 
+  /**
+   * 在 preset 初始化阶段放后面，在插件注册阶段放前面
+   * @param source 
+   * @param plugins 
+   */
   registerPlugins(source: Plugin[], plugins: any[]) {
     assert(
       this.service.stage === ServiceStage.initPresets ||
@@ -216,6 +232,10 @@ export class PluginAPI {
     }
   }
 
+  /**
+   * 跳过插件，不执行的插件
+   * @param keys 
+   */
   skipPlugins(keys: string[]) {
     keys.forEach((key) => {
       assert(!(this.plugin.key === key), `plugin ${key} can't skip itself!`);

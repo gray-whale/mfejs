@@ -9,7 +9,6 @@ interface IOpts {
 }
 
 export async function run(opts?: IOpts) {
-    console.log('检查')
     //检查node版本
     checkNodeVersion();
     //设置当前进程名
@@ -32,7 +31,7 @@ export async function run(opts?: IOpts) {
     } else if (command === 'build') {
         process.env.NODE_ENV = 'production';
     }
-    
+
     if (opts?.presets) {
         process.env[`${FRAMEWORK_NAME}_PRESETS`.toUpperCase()] =
             opts.presets.join(',');

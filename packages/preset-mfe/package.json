@@ -12,7 +12,8 @@
   "author": "codeteenager",
   "license": "ISC",
   "dependencies": {
-    "@mfejs/utils": "^1.0.0"
+    "@mfejs/utils": "^1.0.0",
+    "@mfejs/core": "^1.0.0"
   },
   "devDependencies": {
     "typescript": "^5.1.6",

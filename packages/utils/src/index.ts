@@ -1,4 +1,4 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import yParser from 'yargs-parser';
 import lodash from 'lodash';
 import * as chokidar from 'chokidar';
@@ -13,6 +13,7 @@ import portfinder from 'portfinder';
 import resolve from 'resolve';
 import Mustache from 'mustache';
 import { z } from 'zod';
+import fsExtra from 'fs-extra';
 
 
 import * as logger from './logger';
@@ -26,6 +27,7 @@ export * from './setNoDeprecation';
 export * from './winPath';
 export * as register from './register';
 export * from './zod/isZodSchema';
+export * from './importLazy';
 
 
 export {
@@ -50,4 +52,5 @@ export {
     installDeps,
     fastestLevenshtein,
     z as zod,
+    fsExtra
 };

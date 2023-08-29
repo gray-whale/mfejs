@@ -79,6 +79,9 @@ importers:
 
   packages/preset-mfe:
     dependencies:
+      '@mfejs/core':
+        specifier: ^1.0.0
+        version: link:../core
       '@mfejs/utils':
         specifier: ^1.0.0
         version: link:../utils
@@ -186,6 +189,9 @@ importers:
       '@types/yargs-parser':
         specifier: ^21.0.0
         version: 21.0.0
+      import-lazy:
+        specifier: ^4.0.0
+        version: 4.0.0
 
 packages:
 
@@ -1523,6 +1529,11 @@ packages:
   /ignore@5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
+    dev: true
+
+  /import-lazy@4.0.0:
+    resolution: {integrity: sha512-rKtvo6a868b5Hu3heneU+L4yEQ4jYKLtjpnPeUdK7h0yzXGmyBTypknlkCvHFBqfX9YlorEiMM6Dnq/5atfHkw==}
+    engines: {node: '>=8'}
     dev: true
 
   /indent-string@4.0.0:
