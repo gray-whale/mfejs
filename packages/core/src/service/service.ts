@@ -297,6 +297,8 @@ export class Service {
     //   )} with these values`,
     // );
     // get user config
+    // 创建 Config 对象，获得 userConfig
+    // Config 也是 umi 中非常重要的一个类，负责 umi 配置文件的解析
     const configManager = new Config({
       cwd: this.cwd,
       env: this.env,
@@ -305,6 +307,7 @@ export class Service {
     });
 
     this.configManager = configManager;
+    // userConfig 获得配置文件(.umirc.ts 等) export 的对象
     this.userConfig = configManager.getUserConfig().config;
     // get paths
     // temporary paths for use by function generateFinalConfig.

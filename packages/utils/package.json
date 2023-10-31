@@ -19,15 +19,18 @@
   "author": "codeteenager",
   "dependencies": {
     "@hapi/joi": "17.1.1",
+    "axios": "0.27.2",
     "chalk": "4.1.2",
     "chokidar": "3.5.3",
     "crequire": "^1.8.1",
+    "cross-spawn": "^7.0.3",
     "debug": "4.3.4",
     "deepmerge": "4.2.2",
     "execa": "^5.1.1",
     "fastest-levenshtein": "1.0.16",
     "fs-extra": "11.1.0",
     "glob": "^9.3.2",
+    "import-lazy": "4.0.0",
     "lodash": "^4.17.21",
     "mkdirp": "^2.1.6",
     "mustache": "^4.2.0",
@@ -40,7 +43,8 @@
     "semver": "^7.3.5",
     "yargs-parser": "21.1.1",
     "zod": "3.20.6",
-    "import-lazy": "4.0.0"
+    "@clack/prompts": "0.2.2",
+    "tar": "6.1.13"
   },
   "devDependencies": {
     "@types/debug": "^4.1.8",
@@ -51,6 +55,7 @@
     "@types/prompts": "^2.4.2",
     "@types/resolve": "^1.20.0",
     "@types/semver": "^7.3.5",
-    "@types/yargs-parser": "^21.0.0"
+    "@types/yargs-parser": "^21.0.0",
+    "@types/tar": "6.1.6"
   }
 }

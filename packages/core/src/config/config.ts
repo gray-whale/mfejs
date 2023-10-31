@@ -30,6 +30,9 @@ interface IOpts {
 
 type ISchema = Record<string, any>;
 
+/**
+ * 配置类
+ */
 export class Config {
   public opts: IOpts;
   public mainConfigFile: string | null;
@@ -80,9 +83,9 @@ export class Config {
         ...(this.mainConfigFile
           ? []
           : getAbsFiles({
-              files: this.opts.defaultConfigFiles || DEFAULT_CONFIG_FILES,
-              cwd: this.opts.cwd,
-            })),
+            files: this.opts.defaultConfigFiles || DEFAULT_CONFIG_FILES,
+            cwd: this.opts.cwd,
+          })),
       ],
       {
         ignoreInitial: true,
@@ -145,13 +148,13 @@ export class Config {
         ...[
           mainConfigFile,
           specifiedEnv &&
-            addExt({ file: mainConfigFile, ext: `.${specifiedEnv}` }),
+          addExt({ file: mainConfigFile, ext: `.${specifiedEnv}` }),
           addExt({ file: mainConfigFile, ext: `.${env}` }),
           specifiedEnv &&
-            addExt({
-              file: mainConfigFile,
-              ext: `.${env}.${specifiedEnv}`,
-            }),
+          addExt({
+            file: mainConfigFile,
+            ext: `.${env}.${specifiedEnv}`,
+          }),
         ].filter(Boolean),
       );
 
@@ -226,8 +229,8 @@ export class Config {
       errors.size === 0,
       `Invalid config values: ${Array.from(errors.keys()).join(', ')}
 ${Array.from(errors.keys()).map((key) => {
-  return `Invalid value for ${key}:\n${errors.get(key)!.message}`;
-})}`,
+        return `Invalid value for ${key}:\n${errors.get(key)!.message}`;
+      })}`,
     );
     // invalid config keys
     assert(
