@@ -1,0 +1,22 @@
+{
+  "name": "@mfejs/lint",
+  "version": "1.0.0",
+  "description": "",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "author": "codeteenager",
+  "license": "ISC",
+  "dependencies": {
+    "@mfejs/utils": "^1.0.0",
+    "@mfejs/core": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6",
+    "@types/node": "^20.4.5"
+  }
+}

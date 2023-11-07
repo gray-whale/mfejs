@@ -8,9 +8,9 @@ hero:
   name: 企业级
   text: 前端开发框架
   tagline: 支持Vue、React、小程序
-  # image:
-  #   src: /banner.png
-  #   alt: 前端开发框架
+  image:
+    src: /banner.webp
+    alt: 前端开发框架
   actions:
     - theme: brand
       text: 开始使用

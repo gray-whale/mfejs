@@ -342,6 +342,8 @@ export class Service {
     }
     plugins.unshift(...presetPlugins);
     this.stage = ServiceStage.initPlugins;
+    console.log('---------------plugins---------------');
+    console.log(JSON.stringify(plugins));
     while (plugins.length) {
       await this.initPlugin({ plugin: plugins.shift()!, plugins });
     }

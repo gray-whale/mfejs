@@ -6,6 +6,9 @@ import { dirname, join } from 'path';
 import { IApi } from './types';
 import { isTypeScriptFile } from './utils/isTypeScriptFile';
 
+/**
+ * 内置注册方法插件
+ */
 export default (api: IApi) => {
   [
     'onGenerateFiles',
